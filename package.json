@@ -1,0 +1,94 @@
+{
+  "name": "@bengower/medusa-order-notes-tags",
+  "version": "0.0.1",
+  "description": "Order notes and tags for Medusa v2: append-only notes, tags with a change history, and an order-detail admin widget.",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@9.12.3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bengower/medusa-core.git",
+    "directory": "packages/order-notes-tags"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    ".medusa/server"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./workflows": "./.medusa/server/src/workflows/index.js",
+    "./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./modules/*": "./.medusa/server/src/modules/*/index.js",
+    "./providers/*": "./.medusa/server/src/providers/*/index.js",
+    "./*": "./.medusa/server/src/*.js",
+    "./admin": {
+      "import": "./.medusa/server/src/admin/index.mjs",
+      "require": "./.medusa/server/src/admin/index.js",
+      "default": "./.medusa/server/src/admin/index.js"
+    }
+  },
+  "keywords": [
+    "medusa",
+    "plugin",
+    "medusa-plugin-other",
+    "medusa-plugin",
+    "medusa-v2",
+    "orders",
+    "notes",
+    "tags"
+  ],
+  "scripts": {
+    "build": "medusa plugin:build",
+    "dev": "medusa plugin:develop",
+    "lint": "medusa lint",
+    "prepublishOnly": "medusa plugin:build"
+  },
+  "devDependencies": {
+    "@medusajs/admin-sdk": "2.20.1",
+    "@medusajs/admin-shared": "2.20.1",
+    "@medusajs/cli": "2.20.1",
+    "@medusajs/core-flows": "2.20.1",
+    "@medusajs/eslint-plugin": "2.20.1",
+    "@medusajs/framework": "2.20.1",
+    "@medusajs/icons": "2.20.1",
+    "@medusajs/medusa": "2.20.1",
+    "@medusajs/test-utils": "2.20.1",
+    "@medusajs/ui": "4.2.3",
+    "@swc/core": "^1.7.28",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.2.25",
+    "eslint": "^9.0.0",
+    "jiti": "^2.0.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "vite": "^7.3.6"
+  },
+  "peerDependencies": {
+    "@medusajs/admin-sdk": "2.20.1",
+    "@medusajs/admin-shared": "2.20.1",
+    "@medusajs/cli": "2.20.1",
+    "@medusajs/core-flows": "2.20.1",
+    "@medusajs/framework": "2.20.1",
+    "@medusajs/icons": "2.20.1",
+    "@medusajs/medusa": "2.20.1",
+    "@medusajs/test-utils": "2.20.1",
+    "@medusajs/ui": "4.2.3"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@medusajs/telemetry",
+      "@swc/core",
+      "esbuild",
+      "msgpackr-extract",
+      "protobufjs"
+    ]
+  }
+}
