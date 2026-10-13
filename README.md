@@ -1,4 +1,4 @@
-# @bengower/medusa-order-notes-tags
+# @verificocode/medusa-order-notes-tags
 
 Order notes and tags for Medusa v2 as an installable plugin: an order-detail admin widget plus
 admin API routes.
@@ -10,30 +10,38 @@ admin API routes.
 - The acting admin is resolved server-side from the request auth context, so the author of a note
   or history entry cannot be spoofed by the caller.
 
-Private package on GitHub Packages (scope `@bengower`).
+Published to GitHub Packages under the `@verificocode` scope. GitHub's npm registry needs a
+token with `read:packages` even for public packages.
 
 ## Install
 
 `.npmrc` in the consuming app:
 
 ```
-@bengower:registry=https://npm.pkg.github.com
+@verificocode:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
 ```
 
 ```bash
-NODE_AUTH_TOKEN=$(gh auth token) pnpm add @bengower/medusa-order-notes-tags
+NODE_AUTH_TOKEN=$(gh auth token) pnpm add @verificocode/medusa-order-notes-tags
 ```
 
 `medusa-config.ts`:
 
 ```ts
 module.exports = defineConfig({
-  plugins: [{ resolve: "@bengower/medusa-order-notes-tags", options: {} }],
+  plugins: [{ resolve: "@verificocode/medusa-order-notes-tags", options: {} }],
 })
 ```
 
 Then run `npx medusa db:migrate`.
+
+### Moving from `@bengower/medusa-order-notes-tags`
+
+Same code, new home: 0.0.2 of this package is 0.0.2 of `@bengower/medusa-order-notes-tags`.
+Swap the dependency and the `resolve` string, and map the `@verificocode` scope in `.npmrc`
+instead of `@bengower`. The module name, tables and migrations are unchanged, so no migration
+runs and existing notes, tags and history are untouched.
 
 ### Moving from `@bengower/medusa-core`
 
@@ -66,13 +74,12 @@ from Shopify) does not have to read and rewrite the whole list.
 ## Development
 
 ```bash
-pnpm install          # from the repo root (workspace)
-cd packages/order-notes-tags
+pnpm install
 pnpm build            # medusa plugin:build → .medusa/server
 pnpm lint
 ```
 
-Generate migrations with `pnpm exec medusa plugin:db:generate` from this directory. Read the SQL
+Generate migrations with `pnpm exec medusa plugin:db:generate`. Read the SQL
 before publishing: narrowing an enum re-adds its check constraint, which fails on existing rows
 unless the migration cleans them up between dropping and re-adding the constraint.
 

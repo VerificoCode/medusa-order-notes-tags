@@ -1,13 +1,12 @@
 {
-  "name": "@bengower/medusa-order-notes-tags",
+  "name": "@verificocode/medusa-order-notes-tags",
   "version": "0.0.2",
   "description": "Order notes and tags for Medusa v2: append-only notes, tags with a change history, and an order-detail admin widget.",
   "license": "UNLICENSED",
   "packageManager": "pnpm@9.12.3",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bengower/medusa-core.git",
-    "directory": "packages/order-notes-tags"
+    "url": "git+https://github.com/VerificoCode/medusa-order-notes-tags.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
