@@ -1,6 +1,6 @@
 {
   "name": "@bengower/medusa-order-notes-tags",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Order notes and tags for Medusa v2: append-only notes, tags with a change history, and an order-detail admin widget.",
   "license": "UNLICENSED",
   "packageManager": "pnpm@9.12.3",
