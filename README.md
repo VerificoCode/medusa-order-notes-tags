@@ -53,8 +53,15 @@ Medusa records applied migrations by class name, so an existing database treats 
 | `GET /admin/orders/:id/notes-tags` | Notes, tags and tag history for the order |
 | `POST /admin/orders/:id/notes-tags/notes` | Append a note (`{ content }`) |
 | `POST /admin/orders/:id/notes-tags/tags` | Replace the tag list (`{ tags }`) |
+| `POST /admin/orders/:id/notes-tags/tags/add` | Add tags, keeping the rest (`{ tags }`); like Shopify's `tagsAdd` |
+| `POST /admin/orders/:id/notes-tags/tags/remove` | Remove tags, keeping the rest (`{ tags }`); like Shopify's `tagsRemove` |
 
 There is deliberately no route for editing or deleting a note.
+
+All three tag routes respond with the resulting list, `{ tags }`, and record each tag added or
+removed in the history. Tags are trimmed and de-duplicated. The add/remove routes exist so an
+integration that only knows the tag it wants to add or drop (Verifico's callback engine, ported
+from Shopify) does not have to read and rewrite the whole list.
 
 ## Development
 
